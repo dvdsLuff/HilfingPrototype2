@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Create</title>
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 </head>
 <body>
 
@@ -13,6 +14,28 @@ delete produkt
     <input type="number" id="id" name="id" placeholder="vareNummer">
     <input type="submit" value="Delete">
 </form>
+
+<div th:if="${not #lists.isEmpty(products)}">
+
+    <table class="table" style="width:100%" align="Center">
+
+        <tr id="titles">
+            <th>id</th>
+            <th>name</th>
+            <th>stocknumber</th>
+            <th>price</th>
+        </tr>
+
+        <tbody align="left">
+        <tr th:each="products : ${products}">
+            <td><span th:text="${products.id}"> Id</span></td>
+            <td><span th:text="${products.name}">Name</span></td>
+            <td><span th:text="${products.stocknumber}">Stock number</span></td>
+            <td><span th:text="${products.price}">price</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

@@ -7,14 +7,18 @@ import com.example.mercuriprototype.domain.Product;
 import com.example.mercuriprototype.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 @Controller
 public class ProductController {
-
+    ArrayList<Product> products;
     ProductMapper productMapper = new ProductMapper();
     @Autowired
     ProductRepository productRepository;
@@ -22,8 +26,10 @@ public class ProductController {
     @Autowired
     ProductService productService;
 
-    @GetMapping("/index")
-    public String index() {
+    @GetMapping("/")
+    public String index(Model model) throws SQLException {
+        products = productMapper.getAll();
+        model.addAttribute("products", products);
         return "index";
     }
 
@@ -45,7 +51,9 @@ public class ProductController {
     }
 
     @GetMapping("/delete")
-    public String delete() {
+    public String delete(Model model) throws SQLException {
+        products = productMapper.getAll();
+        model.addAttribute("products", products);
         return "delete";
     }
 
@@ -59,7 +67,10 @@ public class ProductController {
 
 
     @GetMapping("/update")
-    public String update() {
+    public String update(Model model) throws SQLException {
+        products = productMapper.getAll();
+        model.addAttribute("products", products);
+
         return "update";
     }
 
