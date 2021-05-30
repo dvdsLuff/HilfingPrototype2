@@ -1,6 +1,7 @@
 package com.example.mercuriprototype.Controller;
 
 
+import com.example.mercuriprototype.ProductMapper;
 import com.example.mercuriprototype.Service.ProductService;
 import com.example.mercuriprototype.domain.Product;
 import com.example.mercuriprototype.repository.ProductRepository;
@@ -13,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class ProductController {
-    Product product = new Product();
 
+    ProductMapper productMapper = new ProductMapper();
     @Autowired
     ProductRepository productRepository;
 
@@ -35,7 +36,9 @@ public class ProductController {
     public String create(@ModelAttribute Product product) throws Throwable {
 
 
+
         productService.create(product);
+        productMapper.createProduct(product);
 
 
         return "redirect:/index";
@@ -47,9 +50,10 @@ public class ProductController {
     }
 
     @PostMapping("/delete")
-    public String postDelete(@RequestParam int id) {
+    public String postDelete(@RequestParam int id) throws Exception {
 
         productService.delete(id);
+        productMapper.deleteProduct(id);
         return "index";
     }
 
@@ -61,8 +65,9 @@ public class ProductController {
 
 
     @PostMapping("/update")
-    public String postUpdate(@ModelAttribute Product product) {
+    public String postUpdate(@ModelAttribute Product product) throws Exception {
       productService.update(product);
+
 
 
         return "index";
