@@ -66,7 +66,9 @@ public class ProductController {
 
     @PostMapping("/update")
     public String postUpdate(@ModelAttribute Product product) throws Exception {
-      productService.update(product);
+//      productService.update(product);
+        productService.create(product);
+        productMapper.updateProduct(product);
 
 
 
