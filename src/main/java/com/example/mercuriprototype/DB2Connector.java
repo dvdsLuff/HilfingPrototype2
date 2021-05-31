@@ -16,9 +16,9 @@ public class DB2Connector {
     public static Connection getConnection() {
         if (con != null) return con;
 
-        String url = "jdbc:mysql://localhost:3306/hilfling2";
+        String url = "jdbc:mysql://localhost:3306/hilflingtest";
         String user = "root";
-        String password = "i9qAH7AZsUdJA2g0R4AS3";
+        String password = "!Mysql0001";
 
         try {
             con = DriverManager.getConnection(url, user, password);
