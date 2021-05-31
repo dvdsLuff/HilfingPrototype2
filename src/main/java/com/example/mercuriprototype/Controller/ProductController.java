@@ -28,10 +28,12 @@ public class ProductController {
 
     @GetMapping("/")
     public String index(Model model) throws SQLException {
-        products = productMapper.getAll();
+//        productRepository.findAll();
+        ArrayList<Product> products = productMapper.getAll();
         model.addAttribute("products", products);
         return "index";
     }
+
 
     @GetMapping("/add")
     public String add() {
@@ -47,7 +49,7 @@ public class ProductController {
         productMapper.createProduct(product);
 
 
-        return "redirect:/index";
+        return "redirect:/";
     }
 
     @GetMapping("/delete")
@@ -62,7 +64,7 @@ public class ProductController {
 
         productService.delete(id);
         productMapper.deleteProduct(id);
-        return "index";
+        return "redirect:/";
     }
 
 
@@ -77,13 +79,13 @@ public class ProductController {
 
     @PostMapping("/update")
     public String postUpdate(@ModelAttribute Product product) throws Exception {
-//      productService.update(product);
+        //jpa save bruges til både creaet og update.
         productService.create(product);
         productMapper.updateProduct(product);
 
 
 
-        return "index";
+        return "redirect:/";
 
     }
 }

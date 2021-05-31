@@ -11,8 +11,9 @@
 delete produkt
 
     <form action="/delete" method="post" >
-    <input type="number" id="id" name="id" placeholder="vareNummer">
-    <input type="submit" value="Delete">
+    <input type="number" id="id" name="id" >
+
+        <input type="submit" value="delete" class="btn btn-success" role="button">
 </form>
 
 <div th:if="${not #lists.isEmpty(products)}">
